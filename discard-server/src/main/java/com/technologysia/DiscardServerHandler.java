@@ -3,6 +3,9 @@ package com.technologysia;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.ReferenceCountUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handles a server-side channel.
@@ -12,6 +15,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  * For now, it is just enough to extend ChannelInboundHandlerAdapter rather than to implement the handler interface by yourself.
  */
 public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
+    private static final Logger log = LoggerFactory.getLogger(DiscardServerHandler.class);
 
     /**
      * We override the channelRead() event handler method here.
@@ -29,7 +33,17 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter {
         // the handler has to ignore the received message.
         // ByteBuf is a reference-counted object which has to be released explicitly via the release() method.
         // Please keep in mind that it is the handler's responsibility to release any reference-counted object passed to the handler.
-        ((ByteBuf) msg).release();
+        ByteBuf in = (ByteBuf) msg;
+        try {
+            while (in.isReadable()){
+                //This inefficient loop can actually be simplified to: System.out.println(in.toString(io.netty.util.CharsetUtil.US_ASCII))
+                log.info("recv-[{}]", (char)in.readByte());
+                System.out.flush();
+            }
+        }finally {
+            //Alternatively, you could do in.release() here.
+            ReferenceCountUtil.release(msg);
+        }
     }
 
     /**

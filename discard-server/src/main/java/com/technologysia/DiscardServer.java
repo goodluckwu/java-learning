@@ -9,7 +9,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 
 /**
  * Discards any incoming data.
@@ -66,7 +65,7 @@ public class DiscardServer {
             // Here, we bind to the port 8080 of all NICs (network interface cards) in the machine.
             // You can now call the bind() method as many times as you want (with different bind addresses.)
             ChannelFuture f = b.bind(port).sync();
-            log.info("启动成功");
+            log.info("启动成功, 监听端口-[{}]", port);
 
             //Wait until the server socket is closed.
             //In this example, this does not happen, but you can do that to gracefully
@@ -79,16 +78,12 @@ public class DiscardServer {
     }
 
     public static void main(String[] args) throws Exception {
-        long pid = ProcessHandle.current().pid();
-
-        MDC.put("PID", Long.toString(pid));
 
         int port = 8081;
         if(args.length > 0){
             port = Integer.parseInt(args[0]);
         }
 
-        log.info("准备启动服务，端口-[{}]", port);
         new DiscardServer(port).run();
     }
 }
