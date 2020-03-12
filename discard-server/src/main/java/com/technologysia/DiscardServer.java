@@ -11,8 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
-import java.lang.management.ManagementFactory;
-
 /**
  * Discards any incoming data.
  */
@@ -81,8 +79,10 @@ public class DiscardServer {
     }
 
     public static void main(String[] args) throws Exception {
-        MDC.put("PID",
-                ManagementFactory.getRuntimeMXBean().getName());
+        long pid = ProcessHandle.current().pid();
+
+        MDC.put("PID", Long.toString(pid));
+
         int port = 8081;
         if(args.length > 0){
             port = Integer.parseInt(args[0]);
