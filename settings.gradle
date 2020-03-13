@@ -1,3 +1,4 @@
 rootProject.name = 'netty-all-samples'
 include 'discard-server'
+include 'echo-server'
 
