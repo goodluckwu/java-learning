@@ -10,6 +10,12 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+/**
+ * In a stream-based transport such as TCP/IP, received data is stored into a socket receive buffer.
+ * Unfortunately, the buffer of a stream-based transport is not a queue of packets but a queue of bytes.
+ * It means, even if you sent two messages as two independent packets, an operating system will not treat them as two messages but as just a bunch of bytes.
+ * Therefore, there is no guarantee that what you read is exactly what your remote peer wrote
+ */
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
     private static final Logger log = LoggerFactory.getLogger(TimeClientHandler.class);
     @Override

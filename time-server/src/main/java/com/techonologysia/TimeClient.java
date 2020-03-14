@@ -31,7 +31,10 @@ public class TimeClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new TimeClientHandler());
+//                            ch.pipeline().addLast(new TimeClientHandler());
+//                            ch.pipeline().addLast(new TimeClientHandler2());
+//                            ch.pipeline().addLast(new TimeDecoder(), new TimeClientHandler());
+                            ch.pipeline().addLast(new TimeDecoder2(), new TimeClientHandler());
                         }
                     })
                     //Note that we do not use childOption() here unlike we did with ServerBootstrap because the client-side SocketChannel does not have a parent.
