@@ -2,4 +2,5 @@ rootProject.name = 'netty-all-samples'
 include 'discard-server'
 include 'time-server'
 include 'pojo-server'
+include 'oio-server'
 
