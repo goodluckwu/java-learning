@@ -4,4 +4,5 @@ include 'time-server'
 include 'pojo-server'
 include 'oio-server'
 include 'echo-server'
+include 'nio-server'
 
