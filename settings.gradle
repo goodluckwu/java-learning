@@ -6,4 +6,5 @@ include 'oio-server'
 include 'echo-server'
 include 'nio-server'
 include 'netty-in-action'
+include 'java-nio'
 
