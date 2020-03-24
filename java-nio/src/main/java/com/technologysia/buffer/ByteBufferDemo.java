@@ -20,5 +20,19 @@ public class ByteBufferDemo {
         for(int i=0; i < count; i++){
             System.out.print((char)buffer.get());
         }
+        System.out.println();
+        System.out.println(buffer);
+        buffer.position(2).mark().position(4);
+        System.out.println(buffer);
+        for(int i=0; buffer.hasRemaining(); i++){
+            System.out.print((char)buffer.get());
+        }
+        System.out.println();
+        buffer.reset();
+        System.out.println(buffer);
+        for(int i=0; buffer.hasRemaining(); i++){
+            System.out.print((char)buffer.get());
+        }
+        System.out.println();
     }
 }
