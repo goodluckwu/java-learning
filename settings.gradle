@@ -7,4 +7,6 @@ include 'echo-server'
 include 'nio-server'
 include 'netty-in-action'
 include 'java-nio'
+include 'inbound-outbound-pipeline'
+include 'nio-reactor'
 
