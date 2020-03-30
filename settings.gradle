@@ -11,4 +11,5 @@ include 'inbound-outbound-pipeline'
 include 'nio-reactor'
 include 'reactor'
 include 'netty-chat'
+include 'http-server'
 
