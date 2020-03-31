@@ -12,6 +12,5 @@ include 'nio-reactor'
 include 'reactor'
 include 'netty-chat'
 include 'http-server'
-include 'heartbeat'
 include 'uptime'
 
