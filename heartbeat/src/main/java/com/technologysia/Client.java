@@ -7,7 +7,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.CharsetUtil;
 
 public class Client {
     private final String host;
@@ -28,6 +31,8 @@ public class Client {
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
                         pipeline.addLast(new IdleStateHandler(3, 0, 0));
+                        pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+                        pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
                         pipeline.addLast(clientHandler);
                     }
                 });
