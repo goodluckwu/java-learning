@@ -27,6 +27,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
         log.info("From Client - {}", msg);
-        ctx.writeAndFlush(Unpooled.copiedBuffer("PONG", CharsetUtil.UTF_8));
+        if("PING".equals(msg)){
+            ctx.writeAndFlush(Unpooled.copiedBuffer("PONG", CharsetUtil.UTF_8));
+        }else {
+            ctx.writeAndFlush(Unpooled.copiedBuffer("World", CharsetUtil.UTF_8));
+        }
     }
 }
