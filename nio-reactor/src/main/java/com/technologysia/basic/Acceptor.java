@@ -26,6 +26,7 @@ public class Acceptor implements Runnable {
             if(socketChannel != null){
                 log.info("Accept From [{}]", socketChannel.getRemoteAddress());
                 //把客户端通道传给Handler，Handler负责接下来的事件处理
+                new AsyncHandler(socketChannel,selector);
             }
         } catch (IOException e) {
             log.error(e.getMessage(), e);
