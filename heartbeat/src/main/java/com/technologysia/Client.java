@@ -45,6 +45,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        new Client("localhost", 8899).start();
+        new Thread(() -> new Client("localhost", 8899).start()).start();
+        new Thread(() -> new Client("localhost", 8899).start()).start();
     }
 }
