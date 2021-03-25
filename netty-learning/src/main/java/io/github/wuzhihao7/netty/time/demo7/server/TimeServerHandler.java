@@ -1,6 +1,6 @@
 package io.github.wuzhihao7.netty.time.demo7.server;
 
-import io.github.wuzhihao7.demo7.UnixTime;
+import io.github.wuzhihao7.netty.time.demo7.UnixTime;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
