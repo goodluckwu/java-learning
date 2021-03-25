@@ -1,4 +1,4 @@
-package io.github.wuzhihao7.juc;
+package io.github.wuzhihao7.juc.volatiles;
 
 public class VolatileExample {
 
