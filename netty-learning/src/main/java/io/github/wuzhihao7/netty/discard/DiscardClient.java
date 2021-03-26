@@ -1,7 +1,6 @@
 package io.github.wuzhihao7.netty.discard;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.bootstrap.BootstrapConfig;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -12,8 +11,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-
-import java.awt.image.BufferStrategy;
 
 public class DiscardClient {
     static final boolean SSL = System.getProperty("ssl") != null;
@@ -41,6 +38,7 @@ public class DiscardClient {
                             if(sslCtx != null){
                                 pipeline.addLast(sslCtx.newHandler(ch.alloc(), HOST, PORT));
                             }
+                            pipeline.addLast(new DiscardClientHandler());
                         }
                     });
 
