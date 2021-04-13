@@ -12,6 +12,7 @@
         <module>netty-learning</module>
         <module>jdk-learning</module>
         <module>design-pattern</module>
+        <module>spring-boot-learning</module>
     </modules>
 
     <properties>

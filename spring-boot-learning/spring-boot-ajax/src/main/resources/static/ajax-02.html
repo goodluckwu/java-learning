@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+
+    <body>
+        <div>
+            <h1>The Ajax 02 Page</h1>
+            <fieldset>
+                <legend>Ajax 请求</legend>
+                <button type="button" onclick="doAjaxGet()">do Ajax Get</button>
+                <button type="button" onclick="doAjaxPost()">do Ajax Post</button>
+                <button type="button" onclick="doAjaxDelete()">do Ajax Delete</button>
+                <button type="button" onclick="doAjaxPut()">do Ajax Put</button>
+                <div id="result"></div>
+            </fieldset>
+        </div>
+    </body>
+
+    <script>
+        function doAjaxGet(){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState === xhr.DONE){
+                    if(xhr.status === 200){
+                        document.getElementById("result").innerHTML = xhr.responseText;
+                    }
+                }
+            };
+
+            xhr.open("GET", "http://localhost:8080/doAjaxGet", true);
+            xhr.send();
+        }
+
+        function doAjaxPost(){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function (){
+                if(xhr.readyState === xhr.DONE){
+                    if(xhr.status === 200){
+                        document.getElementById("result").innerHTML = xhr.responseText;
+                    }
+                }
+            };
+
+            xhr.open("POST", "http://localhost:8080/doAjaxPost");
+            //post请求向服务端传递数据,需要设置请求头,必须在open之后
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded", true);
+            //发送请求(post请求传递数据,需要将数据写入到send方法内部)
+            xhr.send("id=101&name=Computer&remark=Computer...");
+        }
+
+        function doAjaxPut(){
+            let xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState === xhr.DONE){
+                    if(xhr.status === 200){
+                        document.getElementById("result").innerHTML=xhr.responseText;
+                    }
+                }
+            }
+            xhr.open("PUT","http://localhost:8080/doAjaxPut", true);
+            //post请求向服务端传递数据,需要设置请求头,必须在open之后
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //发送请求(post请求传递数据,需要将数据写入到send方法内部)
+            xhr.send("id=101&name=Book&remark=Book...");
+        }
+
+        function doAjaxDelete(){
+            let xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState === xhr.DONE){
+                    if(xhr.status === 200){
+                        document.getElementById("result").innerHTML=xhr.responseText;
+                    }
+                }
+            }
+            xhr.open("DELETE","http://localhost:8080/doAjaxDelete?id=101", true);
+            xhr.send(null);
+        }
+    </script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+<div>
+    <h1>The Jquery Ajax 01 Page</h1>
+    <fieldset>
+        <legend>Jquery Ajax 请求</legend>
+        <button onclick="doAjax()">$.ajax(...)</button>
+        <button onclick="doAjaxPost()">$.post(...)</button>
+        <button onclick="doAjaxGet()">$.get(...)</button>
+        <button onclick="doAjaxLoad()">$("..").load(...)</button>
+        <span id="result">load data....</span>
+    </fieldset>
+</div>
+</body>
+
+<script>
+    function doAjax() {
+        let url = "http://localhost:8080/doAjaxGet";
+        let params = "";
+        //这里的$代表jquery对象
+        //ajax({})这是jquery对象中的一个ajax函数(封装了ajax操作的基本步骤)
+        $.ajax({
+            type: "GET",//省略type,默认就是get请求
+            url: url,
+            data: params,
+            async: true,//默认为true,表示异步
+            success: function (result) {//result为服务端响应的结果
+                console.log(result);//ajax函数内部将服务端返回的json串转换为了js对象
+                $("#result").html(result);
+            }//success函数会在服务端响应状态status==200,readyState==4的时候执行.
+        });
+    }
+
+    function doAjaxPost() {
+        let url = "http://localhost:8080/doAjaxPost";
+        let params = "id=101&name=Computer&remark=Computer...";
+        $.post(url, params, function (result) {
+            $("#result").html(result);
+        });
+    }
+
+    function doAjaxGet() {
+        let url = "http://localhost:8080/doAjaxGet";
+        let params = "";
+        $.get(url, params, function (result) {
+            $("#result").html(result);
+        }, "text");
+    }
+
+    function doAjaxLoad(){
+        let url="http://localhost:8080/doAjaxGet";
+        $("#result").get(url,function(){
+            console.log("load complete")
+        });
+    }
+
+</script>
+</html>
