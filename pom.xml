@@ -13,6 +13,7 @@
         <module>jdk-learning</module>
         <module>design-pattern</module>
         <module>spring-boot-learning</module>
+        <module>third-lib-learning</module>
     </modules>
 
     <properties>
