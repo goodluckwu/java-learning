@@ -1,4 +1,4 @@
-package io.github.wuzhihao7.filterpattern;
+package io.github.wuzhihao7.filter;
 
 public class Person {
     private String name;

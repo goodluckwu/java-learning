@@ -1,4 +1,4 @@
-package io.github.wuzhihao7.filterpattern;
+package io.github.wuzhihao7.filter;
 
 import java.util.List;
 
