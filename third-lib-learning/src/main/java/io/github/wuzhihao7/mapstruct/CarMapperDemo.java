@@ -1,4 +1,4 @@
-package io.github.wuzhihao7;
+package io.github.wuzhihao7.mapstruct;
 
 import java.util.Objects;
 
