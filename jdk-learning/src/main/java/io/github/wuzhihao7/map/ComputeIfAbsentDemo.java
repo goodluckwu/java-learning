@@ -29,6 +29,9 @@ public class ComputeIfAbsentDemo {
         Integer five = map.computeIfAbsent("5", remappingFunction);
         System.out.println(five);
 
+        Integer six = map.computeIfAbsent("6", key -> null);
+        System.out.println(six);
+
         System.out.println(map);
     }
 }
