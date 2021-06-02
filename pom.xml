@@ -15,6 +15,7 @@
         <module>spring-boot-learning</module>
         <module>third-lib-learning</module>
         <module>leetcode</module>
+        <module>java-utils</module>
     </modules>
 
     <properties>
