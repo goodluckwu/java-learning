@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <processing stage="qa">
+        <paths>
+            <path>/data/path1</path>
+            <path>/data/otherpath</path>
+            <path>/var/log</path>
+            <path>/var/log/日期</path>
+        </paths>
+        <paths2>/var/log/path2</paths2>
+    </processing>
+</configuration>
