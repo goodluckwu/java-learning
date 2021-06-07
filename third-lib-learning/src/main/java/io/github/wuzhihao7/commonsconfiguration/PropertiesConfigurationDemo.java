@@ -1,16 +1,26 @@
 package io.github.wuzhihao7.commonsconfiguration;
 
+import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.configuration2.ConfigurationLookup;
 import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.builder.BasicConfigurationBuilder;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.apache.commons.configuration2.interpol.ConfigurationInterpolator;
+import org.apache.commons.configuration2.interpol.Lookup;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PropertiesConfigurationDemo {
     public static void main(String[] args) throws ConfigurationException {
         Configurations configs = new Configurations();
+        //Configure builder with lookups
+        Parameters parameters = new Parameters();
         FileBasedConfigurationBuilder<PropertiesConfiguration> builder = configs.propertiesBuilder("config.properties");
         PropertiesConfiguration config = builder.getConfiguration();
         System.out.println(config.getString("greeting"));
@@ -34,6 +44,26 @@ public class PropertiesConfigurationDemo {
         System.out.println(config.getString("user.file"));
         System.out.println(config.getString("action.key"));
         System.out.println(config.getString("java.home"));
+        System.out.println(config.getString("java.home2"));
+        System.out.println(config.getString("java.home3"));
+        System.out.println(config.getString("java.home4"));
+        System.out.println(config.getString("var"));
+        System.out.println(config.getProperty("var2"));
+        //循环依赖报错
+//        System.out.println(config.getString("var2"));
 
+        //Create a map with defaults and one additional lookup
+        Map<String, Lookup> lookupMap = new HashMap<>(ConfigurationInterpolator.getDefaultPrefixLookups());
+        lookupMap.put("echo", varName -> "Value of variable" + varName);
+        // Configure builder with lookups
+        Parameters params = new Parameters();
+        BasicConfigurationBuilder<PropertiesConfiguration> builder2 =
+                new BasicConfigurationBuilder<>(
+                        PropertiesConfiguration.class)
+                        .configure(params.basic()
+                                .setPrefixLookups(lookupMap));
+        PropertiesConfiguration config2 = builder2.getConfiguration();
+        config2.setProperty("config2", "${echo: config2}");
+        System.out.println(config2.getString("config2"));
     }
 }
