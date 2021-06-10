@@ -65,5 +65,10 @@ public class PropertiesConfigurationDemo {
         PropertiesConfiguration config2 = builder2.getConfiguration();
         config2.setProperty("config2", "${echo: config2}");
         System.out.println(config2.getString("config2"));
+
+        System.out.println(config.getString("user.file2"));
+        config.addProperty("array", "1/2/3");
+        int[] arrays = config.get(int[].class, "array");
+        System.out.println(Arrays.toString(arrays));
     }
 }
