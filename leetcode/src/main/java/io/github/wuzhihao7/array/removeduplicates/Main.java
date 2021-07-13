@@ -11,10 +11,28 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        int[] nums = {1, 1, 2};
+        int[] nums = {1, 2, 3, 3, 7};
         int count = removeDuplicates(nums);
         System.out.println(count);
         System.out.println(Arrays.toString(Arrays.copyOf(nums,count)));
+        int count2 = removeDuplicates2(nums);
+        System.out.println(count2);
+        System.out.println(Arrays.toString(Arrays.copyOf(nums,count2)));
+    }
+
+    private static int removeDuplicates2(int[] nums) {
+        if(nums == null){
+            return 0;
+        }
+        int count = 0;
+        for(int i = 1; i < nums.length; i++){
+            if(nums[i] == nums[i-1]){
+                count++;
+            }else{
+                nums[i - count] = nums[i];
+            }
+        }
+        return nums.length - count;
     }
 
     /**
@@ -26,7 +44,7 @@ public class Main {
      *
      */
     public static int removeDuplicates(int[] nums){
-        if(nums == null || nums.length == 0){
+        if(nums == null){
             return 0;
         }
         int left = 0;

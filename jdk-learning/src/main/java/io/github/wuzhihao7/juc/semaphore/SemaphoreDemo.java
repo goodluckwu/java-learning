@@ -1,5 +1,6 @@
 package io.github.wuzhihao7.juc.semaphore;
 
+import io.github.wuzhihao7.sequence.Sequence;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,11 +17,16 @@ public class SemaphoreDemo {
         final int N = 8;
         //机器数目
         Semaphore semaphore = new Semaphore(5);
+        System.out.println(semaphore.availablePermits());
         IntStream.range(0, N).forEach(i -> {
             new Worker(i, semaphore).start();
             System.out.println(i);
         });
         System.out.println("done");
+        Semaphore semaphore1 = new Semaphore(0);
+        System.out.println(semaphore1.availablePermits());
+        semaphore1.release();
+        System.out.println(semaphore1.availablePermits());
     }
 
     static class Worker extends Thread {

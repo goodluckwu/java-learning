@@ -3,6 +3,7 @@ package io.github.wuzhihao7.nio.file;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class FilesDemo {
     public static void main(String[] args) throws IOException {
@@ -17,5 +18,6 @@ public class FilesDemo {
         System.out.println(Files.createTempDirectory("prefix"));
         System.out.println(Files.createTempFile("prefix", ".jsp"));
         System.out.println(Files.createTempFile(null, null));
+
     }
 }
