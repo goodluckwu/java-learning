@@ -2,7 +2,6 @@ package io.github.wuzhihao7.limit;
 
 import java.time.LocalTime;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
